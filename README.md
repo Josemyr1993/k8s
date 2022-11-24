@@ -249,6 +249,7 @@ $ curl http://192.168.1.174:31246
 ![image](https://user-images.githubusercontent.com/86851766/203849113-0b05061e-87b7-42ea-9421-8f8753dead15.png)
 
 
+
 ```
 Fonte: https://www.linuxtechi.com/install-kubernetes-on-ubuntu-22-04/
 ```
