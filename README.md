@@ -1,6 +1,6 @@
 ![image](https://user-images.githubusercontent.com/86851766/203856221-7a040eec-bfa5-4032-860a-ada32409d1f6.png)
 
-# Deploying a basic cluster from Linux
+# Deploying a basic cluster from Linux - Ubuntu 20.04
 
 # Kubernete cluster description:
 
