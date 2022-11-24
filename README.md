@@ -1,4 +1,5 @@
-# k8s
+![image](https://user-images.githubusercontent.com/86851766/203855977-e6f01a0f-8cbc-4724-858b-410e9bc050e0.png) # k8s
+
 Deploying a basic cluster from Linux
 
 # Kubernete cluster description:
