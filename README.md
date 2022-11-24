@@ -205,3 +205,50 @@ Perfect, check the nodes status as well.
 ```
 $ kubectl get nodes
 ```
+
+![image](https://user-images.githubusercontent.com/86851766/203848779-4cadbc7f-423f-477a-ac00-6153b0024715.png)
+
+Step 7) Test Kubernetes Installation
+
+```
+$ kubectl create deployment nginx-app --image=nginx --replicas=2
+```
+
+Check the status of nginx-app deployment
+
+```
+$ kubectl get deployment nginx-app
+NAME        READY   UP-TO-DATE   AVAILABLE   AGE
+nginx-app   2/2     2            2           68s
+```
+
+Expose the deployment as NodePort,
+
+```
+$ kubectl expose deployment nginx-app --type=NodePort --port=80
+service/nginx-app exposed
+```
+
+Run following commands to view service status
+
+```
+$ kubectl get svc nginx-app
+$ kubectl describe svc nginx-app
+```
+
+Output of above commands,
+
+![image](https://user-images.githubusercontent.com/86851766/203849036-6ed192ed-7daa-45a5-b67a-b3cfa6bb1f8a.png)
+
+Use following command to access nginx based application,
+
+```
+$ curl http://192.168.1.174:31246
+```
+
+![image](https://user-images.githubusercontent.com/86851766/203849113-0b05061e-87b7-42ea-9421-8f8753dead15.png)
+
+
+```
+Fonte: https://www.linuxtechi.com/install-kubernetes-on-ubuntu-22-04/
+```
