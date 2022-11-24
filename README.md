@@ -44,5 +44,7 @@ Step 2) Disable swap & add Kernel settings
 
 Execute beneath swapoff and sed command to disable swap. Make sure to run the following commands on all the nodes.
 
+```
 $ sudo swapoff -a
 $ sudo sed -i '/ swap / s/^\(.*\)$/#\1/g' /etc/fstab
+```
