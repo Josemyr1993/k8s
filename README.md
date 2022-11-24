@@ -3,7 +3,10 @@
 
 # Kubernete cluster description:
 
-192.168.32.132   k8smaster.example.net k8smaster <br>
-192.168.32.143   k8sworker1.example.net k8sworker1 <br>
-192.168.32.x   k8sworker2.example.net k8sworker2
+Master  : 192.168.32.xx   k8smaster.example.net k8smaster <br>
+Worker1 : 192.168.32.xx   k8sworker1.example.net k8sworker1 <br>
+Worker2 : 192.168.32.xx   k8sworker2.example.net k8sworker2
 
+# Kubernete cluster architecture:
+
+![image](https://user-images.githubusercontent.com/86851766/203845104-440706e3-95b5-435d-917b-09ddf5e74eb2.png)
