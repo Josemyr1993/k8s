@@ -1,4 +1,4 @@
-![image](https://user-images.githubusercontent.com/86851766/203855977-e6f01a0f-8cbc-4724-858b-410e9bc050e0.png) # k8s
+![image](https://user-images.githubusercontent.com/86851766/203856221-7a040eec-bfa5-4032-860a-ada32409d1f6.png)
 
 Deploying a basic cluster from Linux
 
