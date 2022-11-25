@@ -153,3 +153,114 @@ The prometheus.yaml contains all the configurations to discover pods and service
 4 . kubernetes-cadvisor: Collects all cAdvisor metrics.
 5 . kubernetes-service-endpoints: All the Service endpoints are scrapped if the service metadata is annotated with prometheus.io/scrape and prometheus.io/port annotations. It can be used for black-box monitoring.
 
+# Create a Promethes Deployment
+
+Step 1: Create a file named prometheus-deployment.yaml and copy the following contents onto the file. In this configuration, we are mounting the Prometheus config map as a file inside /etc/prometheus as explained in the previous section.
+
+```
+Note: This deployment uses the latest official Prometheus image from the docker hub. Also, we are not using any persistent storage volumes for Prometheus storage as it is a basic setup. When setting up Prometheus for production uses cases, make sure you add persistent storage to the deployment.
+```
+
+```
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: prometheus-deployment
+  namespace: monitoring
+  labels:
+    app: prometheus-server
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: prometheus-server
+  template:
+    metadata:
+      labels:
+        app: prometheus-server
+    spec:
+      containers:
+        - name: prometheus
+          image: prom/prometheus
+          args:
+            - "--storage.tsdb.retention.time=12h"
+            - "--config.file=/etc/prometheus/prometheus.yml"
+            - "--storage.tsdb.path=/prometheus/"
+          ports:
+            - containerPort: 9090
+          resources:
+            requests:
+              cpu: 500m
+              memory: 500M
+            limits:
+              cpu: 1
+              memory: 1Gi
+          volumeMounts:
+            - name: prometheus-config-volume
+              mountPath: /etc/prometheus/
+            - name: prometheus-storage-volume
+              mountPath: /prometheus/
+      volumes:
+        - name: prometheus-config-volume
+          configMap:
+            defaultMode: 420
+            name: prometheus-server-conf
+  
+        - name: prometheus-storage-volume
+          emptyDir: {}
+```
+
+Step 2: Create a deployment on monitoring namespace using the above file.
+
+```
+kubectl create  -f prometheus-deployment.yaml 
+```
+
+Step 3: You can check the created deployment using the following command.
+
+```
+kubectl get deployments --namespace=monitoring
+```
+
+You can also get details from the kubernetes dashboard as shown below.
+
+Connecting To Prometheus Dashboard
+
+You can view the deployed Prometheus dashboard in three different ways.
+
+1. Using Kubectl port forwarding
+2. Exposing the Prometheus deployment as a service with NodePort or a Load Balancer.
+3. Adding an Ingress object if you have an Ingress controller deployed.
+
+Let’s have a look at all three options.
+
+# Method 1: Using Kubectl port forwarding
+
+Using kubectl port forwarding, you can access a pod from your local workstation using a selected port on your localhost. This method is primarily used for debugging purposes.
+
+Step 1: First, get the Prometheus pod name.
+
+```
+kubectl get pods --namespace=monitoring
+```
+
+The output will look like the following.
+
+```
+➜  kubectl get pods --namespace=monitoring
+NAME                                     READY     STATUS    RESTARTS   AGE
+prometheus-monitoring-3331088907-hm5n1   1/1       Running   0          5m
+```
+
+Step 2: Execute the following command with your pod name to access Prometheus from localhost port 8080.
+
+```
+Note: Replace prometheus-monitoring-3331088907-hm5n1 with your pod name.
+```
+
+```
+kubectl port-forward prometheus-monitoring-3331088907-hm5n1 8080:9090 -n monitoring
+```
+
+Step 3: Now, if you access http://localhost:8080 on your browser, you will get the Prometheus home page.
+
