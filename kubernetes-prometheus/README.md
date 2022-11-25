@@ -264,3 +264,6 @@ kubectl port-forward prometheus-monitoring-3331088907-hm5n1 8080:9090 -n monitor
 
 Step 3: Now, if you access http://localhost:8080 on your browser, you will get the Prometheus home page.
 
+# Result
+
+![image](https://user-images.githubusercontent.com/86851766/203942352-43c9f7df-ea07-4ae5-8130-631f79f15985.png)
