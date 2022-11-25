@@ -1,2 +1,0 @@
-## ☸️ kubernetes prometheus Setup
-
