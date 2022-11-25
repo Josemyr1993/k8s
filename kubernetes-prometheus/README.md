@@ -72,7 +72,7 @@ kubectl create namespace monitoring
 
 Prometheus uses Kubernetes APIs to read all the available metrics from Nodes, Pods, Deployments, etc. For this reason, we need to create an RBAC policy with read access to required API groups and bind the policy to the monitoring namespace.
 
-# Step1: Create a file named clusterRole.yaml and copy the following RBAC role.
+# Step1#: Create a file named clusterRole.yaml and copy the following RBAC role.
 
 ```
 apiVersion: rbac.authorization.k8s.io/v1
@@ -110,7 +110,7 @@ subjects:
   namespace: monitoring
 ```
 
-# Step 2: Create the role using the following command
+# Step 2#: Create the role using the following command
 
 ```
 kubectl create -f clusterRole.yaml
