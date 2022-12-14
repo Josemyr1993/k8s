@@ -1,0 +1,15 @@
+apiVersion: v1
+data:
+  timeout.reconciliation: 240s
+  ui.properties: |
+    color.good=purple
+    color.bad=yellow
+    allow.textmode=true
+    how.nice.to.look=fairlyNice
+kind: ConfigMap
+metadata:
+  creationTimestamp: "2022-12-02T13:19:02Z"
+  name: app-teste-cm
+  namespace: argocd
+  resourceVersion: "705557"
+  uid: 26518234-a08f-4486-9e19-61bc8bcafa92
