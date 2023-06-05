@@ -1,2 +1,8 @@
-kubeadm join k8smaster.example.net:6443 --token krlape.e5x2nlzlame0klgs \
-        --discovery-token-ca-cert-hash sha256:2044ead7a4f3a1436be75c2fb855ec9ec3aa8e4a3a57396d1f23dd04e677fae6
+kubeadm join k8smaster.example.net:6443 --token ppenf7.xi9p1kr9n93sx3p7 \
+	--discovery-token-ca-cert-hash sha256:2044ead7a4f3a1436be75c2fb855ec9ec3aa8e4a3a57396d1f23dd04e677fae6 \
+	--control-plane 
+
+Then you can join any number of worker nodes by running the following on each as root:
+
+kubeadm join k8smaster.example.net:6443 --token ppenf7.xi9p1kr9n93sx3p7 \
+	--discovery-token-ca-cert-hash sha256:2044ead7a4f3a1436be75c2fb855ec9ec3aa8e4a3a57396d1f23dd04e677fae6
