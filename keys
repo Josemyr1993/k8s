@@ -1,0 +1,2 @@
+kubeadm join k8smaster.example.net:6443 --token krlape.e5x2nlzlame0klgs \
+        --discovery-token-ca-cert-hash sha256:2044ead7a4f3a1436be75c2fb855ec9ec3aa8e4a3a57396d1f23dd04e677fae6
