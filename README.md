@@ -186,8 +186,7 @@ As we can see nodes status is ‘NotReady’, so to make it active. We must inst
 Run following curl and kubectl command to install Calico network plugin from the master node,
 
 ```
-$ curl https://projectcalico.docs.tigera.io/manifests/calico.yaml -O
-$ kubectl apply -f calico.yaml
+$ kubectl apply -f https://raw.githubusercontent.com/projectcalico/calico/v3.25.0/manifests/calico.yaml
 ```
 
 Output of above commands would look like below,
