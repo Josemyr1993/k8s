@@ -127,7 +127,7 @@ Install Kubernetes components like kubectl, kubelet and Kubeadm utility on all t
 
 ```
 $ sudo apt update
-$ sudo apt install -y kubelet kubeadm kubectl
+$ sudo apt-get install -y kubelet=1.26.5-00 kubeadm=1.26.5-00 kubectl=1.26.5-00 docker.io
 $ sudo apt-mark hold kubelet kubeadm kubectl
 ```
 
