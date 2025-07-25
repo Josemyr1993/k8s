@@ -1,3 +1,4 @@
+Error-1
 This error is likely caused by:
         - The kubelet is not running
         - The kubelet is unhealthy due to a misconfiguration of the node in some way (required cgroups disabled)
@@ -5,7 +6,9 @@ This error is likely caused by:
 kubelet error:
  "command failed" err="failed to load kubelet config file, path: /var/lib/kubelet/config.yaml, error: faile> error failed to read kubelet config file \"/var/lib/kubelet/config.yaml\", error: open /var/lib/kubelet/config.yaml: no such file or directory"
 
-Solution to generate /var/lib/kubelet/config.yaml file:
+Solution 
+
+to generate /var/lib/kubelet/config.yaml file:
 
 # sudo kubeadm init phase kubelet-start
 
@@ -16,4 +19,31 @@ kubelet.service - kubelet: The Kubernetes Node Agent
 Active: active (running) since Fri 2025-07-25 09:16:41 WAT; 1min 12s ago
 
 
+
+
+Error-2
+W0725 09:19:26.446452  626479 version.go:104] could not fetch a Kubernetes version from the internet: unable to get URL "https://dl.k8s.io/release/stable-1.txt": Get "https://cdn.dl.k8s.io/release/stable-1.     txt": context deadline exceeded (Client.Timeout exceeded while awaiting headers)
+W0725 09:19:26.446873  626479 version.go:105] falling back to the local client version: v1.30.14
+[init] Using Kubernetes version: v1.30.14
+[preflight] Running pre-flight checks
+        [WARNING Firewalld]: firewalld is active, please ensure ports [6443 10250] are open or your cluster may not function correctly
+error execution phase preflight: [preflight] Some fatal errors occurred:
+        [ERROR FileAvailable--etc-kubernetes-manifests-kube-apiserver.yaml]: /etc/kubernetes/manifests/kube-apiserver.yaml already exists
+        [ERROR FileAvailable--etc-kubernetes-manifests-kube-controller-manager.yaml]: /etc/kubernetes/manifests/kube-controller-manager.yaml already exists
+        [ERROR FileAvailable--etc-kubernetes-manifests-kube-scheduler.yaml]: /etc/kubernetes/manifests/kube-scheduler.yaml already exists
+        [ERROR FileAvailable--etc-kubernetes-manifests-etcd.yaml]: /etc/kubernetes/manifests/etcd.yaml already exists
+        [ERROR Port-10250]: Port 10250 is in use
+[preflight] If you know what you are doing, you can make a check non-fatal with `--ignore-preflight-errors=...`
+To see the stack trace of this error execute with --v=5 or higher
+
+
+Solution
+
+#  sudo kubeadm reset -f
+#  sudo rm -rf /var/lib/etcd
+#  sudo rm -rf /etc/kubernetes/manifests
+#  sudo rm -rf ~/.kube
+#  sudo systemctl restart crio
+
+# sudo kubeadm init --pod-network-cidr=192.168.10.0/16
 
