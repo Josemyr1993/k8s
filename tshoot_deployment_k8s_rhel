@@ -1,1 +1,19 @@
+This error is likely caused by:
+        - The kubelet is not running
+        - The kubelet is unhealthy due to a misconfiguration of the node in some way (required cgroups disabled)
+
+kubelet error:
+ "command failed" err="failed to load kubelet config file, path: /var/lib/kubelet/config.yaml, error: faile> error failed to read kubelet config file \"/var/lib/kubelet/config.yaml\", error: open /var/lib/kubelet/config.yaml: no such file or directory"
+
+Solution to generate /var/lib/kubelet/config.yaml file:
+
+# sudo kubeadm init phase kubelet-start
+
+# systemctl status kubelet
+
+kubelet.service - kubelet: The Kubernetes Node Agent
+
+Active: active (running) since Fri 2025-07-25 09:16:41 WAT; 1min 12s ago
+
+
 
