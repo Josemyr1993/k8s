@@ -80,18 +80,26 @@ $ sudo sysctl --system
 
 In this guide, we are using containerd run time for our Kubernetes cluster. So, to install containerd, first install its dependencies.
 
+
+# << OPTIONAL >>
+
+```
 $ sudo apt install -y curl gnupg2 software-properties-common apt-transport-https ca-certificates
+```
+
 
 ```
 $ sudo curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmour -o /etc/apt/trusted.gpg.d/docker.gpg
 $ sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
 ```
 
+# << END OPTIONAL BLOCK >>
+
 Now, run following apt command to install containerd
 
 ```
 $ sudo apt update
-$ sudo apt install -y containerd.io
+$ sudo apt install -y containerd
 ```
 
 Configure containerd so that it starts using systemd as cgroup.
